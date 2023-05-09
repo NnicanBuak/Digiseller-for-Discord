@@ -11,7 +11,7 @@ from hashlib import sha256
 
 
 ENDPOINTS = {"APIlogin": "https://api.digiseller.ru/api/apilogin"}
-TOKEN = "MTEwNTAzNDcxNzM2OTIxMjkzOA.G85xIa.DPzEBdIlUbvJrCUjFyT-aaWOzuy__3f5w6nfSs"
+BOT_TOKEN = "MTEwNTAzNDcxNzM2OTIxMjkzOA.G85xIa.DPzEBdIlUbvJrCUjFyT-aaWOzuy__3f5w6nfSs"
 
 # Инициализация приложния
 client = ds.Client(intents=ds.Intents.all())
@@ -31,7 +31,7 @@ tree = ds.app_commands.CommandTree(
 async def auth(ctx, SELLER_ID, API_KEY: str):
     # GET запрос к API Digiseller
     response = await requests.get(
-        endpoints["APIlogin"],
+        ENDPOINTS["APIlogin"],
         params={
             "seller_id": SELLER_ID,
             "timestamp": "1",
@@ -58,4 +58,4 @@ async def on_ready():
 
 
 # Запуск бота
-client.run(PUBLIC_KEY)
+client.run(BOT_TOKEN)
