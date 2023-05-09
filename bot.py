@@ -10,7 +10,7 @@ from hashlib import sha256
 
 
 endpoints = {"APIlogin": "https://api.digiseller.ru/api/apilogin"}
-token = "ae08ff4fab2b4cb2ad0da0019905a73de51a866014d34cd6f1d72566612c7cda"
+token = "MTEwNTAzNDcxNzM2OTIxMjkzOA.G85xIa.DPzEBdIlUbvJrCUjFyT-aaWOzuy__3f5w6nfSs"
 
 # Инициализация приложния
 client = ds.Client(intents=ds.Intents.all())
