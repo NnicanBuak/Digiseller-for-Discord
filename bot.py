@@ -5,12 +5,13 @@
 import discord as ds
 from discord.app_commands import Command
 import requests
+import dotenv
 from time import time
 from hashlib import sha256
 
 
-endpoints = {"APIlogin": "https://api.digiseller.ru/api/apilogin"}
-token = "MTEwNTAzNDcxNzM2OTIxMjkzOA.G85xIa.DPzEBdIlUbvJrCUjFyT-aaWOzuy__3f5w6nfSs"
+ENDPOINTS = {"APIlogin": "https://api.digiseller.ru/api/apilogin"}
+TOKEN = "MTEwNTAzNDcxNzM2OTIxMjkzOA.G85xIa.DPzEBdIlUbvJrCUjFyT-aaWOzuy__3f5w6nfSs"
 
 # Инициализация приложния
 client = ds.Client(intents=ds.Intents.all())
