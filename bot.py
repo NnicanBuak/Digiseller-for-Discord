@@ -10,7 +10,7 @@ from hashlib import sha256
 
 
 endpoints = {"APIlogin": "https://api.digiseller.ru/api/apilogin"}
-PUBLIC_KEY = "ae08ff4fab2b4cb2ad0da0019905a73de51a866014d34cd6f1d72566612c7cda"
+token = "ae08ff4fab2b4cb2ad0da0019905a73de51a866014d34cd6f1d72566612c7cda"
 
 # Инициализация приложния
 client = ds.Client(intents=ds.Intents.all())
@@ -24,7 +24,7 @@ tree = ds.app_commands.CommandTree(
 
 
 # команда авторизации /auth <SELLER_ID> <API_KEY> (для администратора)
-@tree.add_command( 
+@tree.add_command(
     guild=[guild.id],
 )
 async def auth(ctx, SELLER_ID, API_KEY: str):
