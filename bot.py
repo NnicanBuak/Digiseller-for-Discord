@@ -5,8 +5,9 @@ from disnake.ext import commands
 from dotenv import load_dotenv
 
 # переменные окружения
-env_config = os.getenv("config")
+env_config = os.getenv(".config")
 print(env_config)
+env_attribute = "ENVIRONMENT"
 if env_config == "production":
     env_attribute = os.getenv("production")
 if env_config == "development":
