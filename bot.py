@@ -1,48 +1,76 @@
-# библиотеки
 import os
+import logging
 import disnake
 from disnake.ext import commands
-from dotenv import load_dotenv
+from dotenv import dotenv_values, load_dotenv
 
-# переменные окружения
-env_config = os.getenv(".config")
-print(env_config)
-env_attribute = "ENVIRONMENT"
-if env_config == "production":
-    env_attribute = os.getenv("production")
-if env_config == "development":
-    env_attribute = os.getenv("development")
-dotenv_path = f".env.{env_attribute}"
-load_dotenv(dotenv_path=dotenv_path)
+def init():
+    # загрузка переменных окружения
+    config = {**dotenv_values(".env.config")}
+    if config["DEV"] == True:
+        env_attribute = "production"
+    else:
+        env_attribute = "development"
+    dotenv_path = f".env.{env_attribute}"
+    load_dotenv(dotenv_path=dotenv_path)
 
-# статус бота (онлайн и т.д.)
-bot = commands.Bot(
-    command_prefix="!",
-    intents=disnake.Intents.all(),  # Intents discordа
-    activity=disnake.Game(
-        "Nnican", status=disnake.Status.online  # статус что он делает (Играет в Nnican)
-    ),
-)  # статус по типу Онлайн и т.д.
-bot.remove_command("help")
-# удаляет обычную команду help (зачемяем потом на красивую)
+    # установка переменных окружения
+    BOT_TOKEN = os.environ.get("TOKEN")
+   
 
 
-# уведомление о готовности к работе
-@bot.event
-async def on_ready():
-    print("Starting:")
-    print(bot.user.name)
-    print(bot.user.id)
-    print("Status: work")
+    # уведомление о готовности к работе
+    @Bot.digiseller.event
+    async def on_ready():
+        print("Starting:")
+        print("name:", Bot.bot.user.name)
+        print("id:", Bot.bot.user.id)
+        print("Status: on")
 
+    # уведомление о изменении состояния
+    @Bot.digiseller.event
+    async def on_state_change(state):
+        print("State changed")
+        print("name:", Bot.bot.user.name, Bot.bot.user.discriminator)
+        print("id:", Bot.bot.user.id)
+        print("Status:", state)
 
-# команда бота для теста
-@bot.slash_command(name="тест", description="Тест команда")
-async def test(inter):
-    msg = "Тест успешен"
-    await inter.response.send_message(msg)
+    # уведомление об ошибке и логирование ошибки на сервере
+    @Bot.digiseller.event
+    async def on_slash_command_error(inter, error):
+        await inter.response.send_message("Произошла ошибка, попробуйте позже", ephemeral=True)
+        await logging.error(error)
+            
 
+    #сообщает о том что бот остановлен
+    @Bot.digiseller.event
+    async def stop():
+        print("Stopping:")
+        print("name:", Bot.bot.user.name)
+        print("id:", Bot.bot.user.id)
+        print("Status: off")
 
-# токен (хранится в файле token.txt)
-token = open("token.txt", "r").readline()
-bot.run(token)
+    # запуск бота
+    Bot.digiseller.run(BOT_TOKEN)
+
+# класс бота
+class Bot:
+    digiseller = commands.Bot(command_prefix="-",
+                                    intents=disnake.Intents.all(),activity=disnake.Activity
+                                        (type=disnake.ActivityType.watching,                                # watching, listening, playing, streaming - активность бота
+                                            name="Nnican.store",                                            # название активности
+                                                url="https://discord.nnican.store",                         # ссылка в статусе
+                                                    application_id=1105450039830134784,                     # id бота   
+                                                        large_image="nnican",                               # большая картинка в статусе
+                                                            small_image="digiseller",                       # маленькая картинка в статусе
+                                                                large_text="Nnican.store",                  # текст при наведении на большую картинку
+                                                                    small_text="digiseller"),               # текст при наведении на маленькую картинку
+                                                                        status=disnake.Status.online        # статус бота (online, idle, dnd, invisible)
+) 
+    
+    
+    
+if __name__ == "__init__":
+    init()
+
+auth_command.Auth.add_slash_command(Bot, disnake)
