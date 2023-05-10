@@ -21,6 +21,8 @@ Discord Bot
 
 6. Создать файл .env.development и вписать туда токен бота
 
+7. в файл token.txt вписать токен бота
+
 ```env
 TOKEN=ваш токен
 ```
