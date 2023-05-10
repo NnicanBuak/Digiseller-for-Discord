@@ -1,2 +1,1 @@
-discord>=2.2.3
-dotenv>=0.0.5
+disnake
