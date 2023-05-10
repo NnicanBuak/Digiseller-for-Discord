@@ -30,10 +30,10 @@ bot.remove_command("help")
 # уведомление о готовности к работе
 @bot.event
 async def on_ready():
-    print("Запущено:")
+    print("Starting:")
     print(bot.user.name)
     print(bot.user.id)
-    print("Статус: готово")
+    print("Status: work")
 
 
 # команда бота для теста
