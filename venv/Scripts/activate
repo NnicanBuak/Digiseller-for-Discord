@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="D:\github\digiseller beta 1.0\venv"
+VIRTUAL_ENV="C:\Users\mybai\OneDrive\Desktop\Development\Digiseller-Discord-Bot\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=D:\github\digiseller beta 1.0\venv
+set VIRTUAL_ENV=C:\Users\mybai\OneDrive\Desktop\Development\Digiseller-Discord-Bot\venv
 
 if not defined PROMPT set PROMPT=$P$G
 
