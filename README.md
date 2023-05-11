@@ -27,10 +27,9 @@ py -m venv digiseller-venv
 4. Запустить виртуальную среду окружения с помощью команды 
 ```
 digiseller-venv\Scripts\activate
-`
 ```
 5. Установить библиотеки с помощью команды 
-`
+```
 py -m pip install -r requirements.txt
 ```
 
