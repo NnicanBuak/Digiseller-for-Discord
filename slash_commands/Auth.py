@@ -1,11 +1,3 @@
-class Auth:
-__init__(Bot, disnake):
-    self.Bot=Bot
-    self.disnake=disnake
-   add_slash_command(self):
-     # функциии связанные с командой
-
-
 # команда бота для теста
 @Bot.digiseller.slash_command(name="test", description="Тест команда")
 async def test(inter):

@@ -3,8 +3,9 @@ import logging
 import disnake
 from disnake.ext import commands
 from dotenv import dotenv_values, load_dotenv
+import slash_commands
 
-def init():
+def init(slash_commands.add_slash_command(Bot, disnake)):
     # загрузка переменных окружения
     config = {**dotenv_values(".env.config")}
     if config["DEV"] == True:
@@ -72,5 +73,3 @@ class Bot:
     
 if __name__ == "__init__":
     init()
-
-auth_command.Auth.add_slash_command(Bot, disnake)
