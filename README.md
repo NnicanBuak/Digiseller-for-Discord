@@ -10,28 +10,21 @@ Discord Bot
 # Инструкция для сборки
 
 1. Иметь Python 
-(```
-бот проверен на версии 3.11
-```)
+
+`(бот проверен на версии 3.11)`
 
 2. Клонировать репозиторий команой
-```
-git clone https://github.com/NnicanBuak/Digiseller-for-Discord
-```
+```git clone https://github.com/NnicanBuak/Digiseller-for-Discord```
 
-3. Создать виртуальную среду окружения с помощью команды 
-```
-py -m venv digiseller-venv
-```
+3. Создать виртуальную среду окружения с помощью команды
+
+```py -m venv digiseller-venv```
+
 
 4. Запустить виртуальную среду окружения с помощью команды 
-```
-digiseller-venv\Scripts\activate
-```
+```digiseller-venv\Scripts\activate```
 5. Установить библиотеки с помощью команды 
-```
-py -m pip install -r requirements.txt
-```
+```py -m pip install -r requirements.txt```
 
 6. Создать файл .env.development и вписать туда токен бота
 ```env
@@ -46,16 +39,13 @@ digiseller-venv\Scripts\activate
 ```
 
 2. Запустить бота с помощью команды 
-```
+
 py bot.py
-```
+
 
 # Инструкция для добавления команд
 
-1. Создать файл .py с названием команды в папке 
-```
-slash_commands
-```
+1. Создать файл .py с названием команды в папке `slash_commands`
 
 2. Импортировать библиотеку disnake
 
