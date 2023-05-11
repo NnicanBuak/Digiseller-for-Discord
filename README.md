@@ -9,7 +9,7 @@ Discord Bot
 
 # Инструкция для сборки
 
-1. Иметь Python ```бот проверен на 3.11```
+1. Иметь Python (```бот проверен на версии 3.11```)
 
 2. Клонировать репозиторий 
 ```git clone https://github.com/NnicanBuak/Digiseller-for-Discord```
