@@ -11,8 +11,10 @@ Discord Bot
 
 1. Иметь Python (```бот проверен на версии 3.11```)
 
-2. Клонировать репозиторий 
-```git clone https://github.com/NnicanBuak/Digiseller-for-Discord```
+2. Клонировать репозиторий команой
+```
+git clone https://github.com/NnicanBuak/Digiseller-for-Discord
+```
 
 3. Создать виртуальную среду окружения с помощью команды `py -m venv digiseller-venv`
 
