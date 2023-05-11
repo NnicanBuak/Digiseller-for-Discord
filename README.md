@@ -9,39 +9,39 @@ Discord Bot
 
 # Инструкция для сборки
 
-1. Иметь Python 
+1. Иметь Python
 
 `(бот проверен на версии 3.11)`
 
-2. Клонировать репозиторий команой
-```git clone https://github.com/NnicanBuak/Digiseller-for-Discord```
+2. Клонировать репозиторий командой или другим способом
+   `git clone https://github.com/NnicanBuak/Digiseller-for-Discord`
 
 3. Создать виртуальную среду окружения с помощью команды
 
-```py -m venv digiseller-venv```
+`py -m venv venv`
 
-
-4. Запустить виртуальную среду окружения с помощью команды 
-```digiseller-venv\Scripts\activate```
-5. Установить библиотеки с помощью команды 
-```py -m pip install -r requirements.txt```
+4. Запустить виртуальную среду окружения с помощью команды
+   `venv\Scripts\activate`
+5. Установить библиотеки с помощью команды
+   `py -m pip install -r requirements.txt`
 
 6. Создать файл .env.development и вписать туда токен бота
+
 ```env
 TOKEN=ваш токен
 ```
 
 # Инструкция для запуска
 
-1. Запустить виртуальную среду окружения с помощью команды 
+1. Запустить виртуальную среду окружения с помощью команды
+
 ```
-digiseller-venv\Scripts\activate
+venv\Scripts\activate
 ```
 
-2. Запустить бота с помощью команды 
+2. Запустить бота с помощью команды
 
 py bot.py
-
 
 # Инструкция для добавления команд
 
