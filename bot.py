@@ -3,9 +3,16 @@ import logging
 import disnake
 from disnake.ext import commands
 from dotenv import dotenv_values, load_dotenv
-import slash_commands
+from . import slash_commands
 
-def init(slash_commands.add_slash_command(Bot, disnake)):
+print(slash_commands)
+
+for command in all_commands.__all__:
+    module = getattr(slash_commands, command)
+    print(module)
+
+
+def init():
     # загрузка переменных окружения
     config = {**dotenv_values(".env.config")}
     if config["DEV"] == True:
@@ -17,8 +24,6 @@ def init(slash_commands.add_slash_command(Bot, disnake)):
 
     # установка переменных окружения
     BOT_TOKEN = os.environ.get("TOKEN")
-   
-
 
     # уведомление о готовности к работе
     @Bot.digiseller.event
@@ -39,11 +44,12 @@ def init(slash_commands.add_slash_command(Bot, disnake)):
     # уведомление об ошибке и логирование ошибки на сервере
     @Bot.digiseller.event
     async def on_slash_command_error(inter, error):
-        await inter.response.send_message("Произошла ошибка, попробуйте позже", ephemeral=True)
+        await inter.response.send_message(
+            "Произошла ошибка, попробуйте позже", ephemeral=True
+        )
         await logging.error(error)
-            
 
-    #сообщает о том что бот остановлен
+    # сообщает о том что бот остановлен
     @Bot.digiseller.event
     async def stop():
         print("Stopping:")
@@ -54,22 +60,25 @@ def init(slash_commands.add_slash_command(Bot, disnake)):
     # запуск бота
     Bot.digiseller.run(BOT_TOKEN)
 
+
 # класс бота
 class Bot:
-    digiseller = commands.Bot(command_prefix="-",
-                                    intents=disnake.Intents.all(),activity=disnake.Activity
-                                        (type=disnake.ActivityType.watching,                                # watching, listening, playing, streaming - активность бота
-                                            name="Nnican.store",                                            # название активности
-                                                url="https://discord.nnican.store",                         # ссылка в статусе
-                                                    application_id=1105450039830134784,                     # id бота   
-                                                        large_image="nnican",                               # большая картинка в статусе
-                                                            small_image="digiseller",                       # маленькая картинка в статусе
-                                                                large_text="Nnican.store",                  # текст при наведении на большую картинку
-                                                                    small_text="digiseller"),               # текст при наведении на маленькую картинку
-                                                                        status=disnake.Status.online        # статус бота (online, idle, dnd, invisible)
-) 
-    
-    
-    
+    digiseller = commands.Bot(
+        command_prefix="-",
+        intents=disnake.Intents.all(),
+        activity=disnake.Activity(
+            type=disnake.ActivityType.watching,  # watching, listening, playing, streaming - активность бота
+            name="Nnican.store",  # название активности
+            url="https://discord.nnican.store",  # ссылка в статусе
+            application_id=1105450039830134784,  # id бота
+            large_image="nnican",  # большая картинка в статусе
+            small_image="digiseller",  # маленькая картинка в статусе
+            large_text="Nnican.store",  # текст при наведении на большую картинку
+            small_text="digiseller",
+        ),  # текст при наведении на маленькую картинку
+        status=disnake.Status.online,  # статус бота (online, idle, dnd, invisible)
+    )
+
+
 if __name__ == "__init__":
     init()
