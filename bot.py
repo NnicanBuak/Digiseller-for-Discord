@@ -3,13 +3,7 @@ import logging
 import disnake
 from disnake.ext import commands
 from dotenv import dotenv_values, load_dotenv
-from . import slash_commands
-
-print(slash_commands)
-
-for command in all_commands.__all__:
-    module = getattr(slash_commands, command)
-    print(module)
+import slash_commands
 
 
 def init():
@@ -25,20 +19,23 @@ def init():
     # установка переменных окружения
     BOT_TOKEN = os.environ.get("TOKEN")
 
+    # инициализация комманд
+    slash_commands.auth.add(Bot)
+
     # уведомление о готовности к работе
     @Bot.digiseller.event
     async def on_ready():
         print("Starting:")
-        print("name:", Bot.bot.user.name)
-        print("id:", Bot.bot.user.id)
+        print("name:", Bot.digiseller.user.name)
+        print("id:", Bot.digiseller.user.id)
         print("Status: on")
 
     # уведомление о изменении состояния
     @Bot.digiseller.event
     async def on_state_change(state):
         print("State changed")
-        print("name:", Bot.bot.user.name, Bot.bot.user.discriminator)
-        print("id:", Bot.bot.user.id)
+        print("name:", Bot.digiseller.user.name, Bot.digiseller.user.discriminator)
+        print("id:", Bot.digiseller.user.id)
         print("Status:", state)
 
     # уведомление об ошибке и логирование ошибки на сервере
@@ -53,8 +50,8 @@ def init():
     @Bot.digiseller.event
     async def stop():
         print("Stopping:")
-        print("name:", Bot.bot.user.name)
-        print("id:", Bot.bot.user.id)
+        print("name:", Bot.digiseller.user.name)
+        print("id:", Bot.digiseller.user.id)
         print("Status: off")
 
     # запуск бота
@@ -80,5 +77,5 @@ class Bot:
     )
 
 
-if __name__ == "__init__":
+if __name__ == "__main__":
     init()
