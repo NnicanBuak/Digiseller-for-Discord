@@ -20,7 +20,9 @@ def init():
     BOT_TOKEN = os.environ.get("TOKEN")
 
     # инициализация комманд
-    slash_commands.auth.add(Bot)
+    slash_commands.test.init(Bot)
+    slash_commands.embed_test.init(Bot)
+    slash_commands.auth.init(Bot)
 
     # уведомление о готовности к работе
     @Bot.digiseller.event

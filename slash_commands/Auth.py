@@ -1,31 +1,23 @@
 import disnake
+import requests
+import time
+from hashlib import sha256
 
 
-def add(Bot):
-    @Bot.digiseller.slash_command(name="test", description="Тест команда")
-    async def test(inter):
-        await inter.response.send_message(
-            "тест прошел успешно?",
-            components=[
-                disnake.ui.Button(
-                    label="Да", style=disnake.ButtonStyle.success, custom_id="yes"
-                ),
-                disnake.ui.Button(
-                    label="Нет", style=disnake.ButtonStyle.danger, custom_id="no"
-                ),
-            ],
+def init(Bot):
+    # команда
+    @Bot.digiseller.slash_command(name="auth", description="Тест команда")
+    async def auth(inter, seller_id: int, api_key: str):
+        command_time = time.time()
+        response = await requests.post(
+            "https://api.digiseller.ru/api/apilogin",
+            data={
+                "seller_id": seller_id,
+                "timestamp": command_time,
+                "sign": sha256(api_key + str(command_time)),
+            },
         )
-
-    @Bot.digiseller.listen("on_button_click")
-    async def help_listener(inter: disnake.MessageInteraction):
-        if inter.component.custom_id not in ["yes", "no"]:
-            # We filter out any other button presses except
-            # the components we wish to process.
-            return
-
-        if inter.component.custom_id == "yes":
-            await inter.response.send_message("Можно сохранять код!")
-        elif inter.component.custom_id == "no":
-            await inter.response.send_message(
-                "Жаль! проверьте код и перезапустите бота"
-            )
+        await inter.response.send_message(
+            "Вы успешно авторизовались!\n" + response,
+            ephemeral=True,
+        )
